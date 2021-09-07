@@ -5,8 +5,10 @@
 
 <main>
 
+    <h1>Welcome to Smart on FHIR demo-app</h1>
     <div>
-        {$patientName}
+        <p>Pasientnavn: {$patientName}</p>
+        <p>PasientId: {$patient.id}</p>
     </div>
 </main>
 

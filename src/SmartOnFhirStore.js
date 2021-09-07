@@ -21,10 +21,8 @@ Smart.ready()
 export const patient = derived(
     fhir,
     ($fhir, set) => {
-        console.log("aaaaaaa")
         if($fhir != null && $fhir.client != null)
         {
-            console.log("bbbbbbbbbb")
             $fhir.client.patient.read().then(p => set(p));
         }
     }
@@ -38,7 +36,6 @@ export const patientName = derived(
             let givenName = $patient.name[0].given[0];
             let patientName = givenName + " " + familyName;
             set(patientName);
-            
         }
     }
 );

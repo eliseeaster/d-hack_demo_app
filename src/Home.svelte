@@ -8,7 +8,7 @@
     <h1>Welcome to Smart on FHIR demo-app</h1>
     <div>
         <p>Pasientnavn: {$patientName}</p>
-        <p>PasientId: {$patient.id}</p>
+        <p>PasientId: {$patient?.id}</p>
     </div>
 </main>
 

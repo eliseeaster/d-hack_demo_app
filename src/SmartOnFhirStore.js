@@ -6,6 +6,7 @@ export const fhir = writable(null);
 
 export const dipsExtensionsStore = writable(dipsExtensions);
 
+//Runs when the app is authorized to access the FHIR-api
 Smart.ready()
     .then(client => {
         var newContext = {
@@ -18,6 +19,7 @@ Smart.ready()
     })
     .catch(console.error);
 
+//Stores patient as a svelte store
 export const patient = derived(
     fhir,
     ($fhir, set) => {
@@ -28,6 +30,7 @@ export const patient = derived(
     }
 );
 
+//Stores patientName as a svelte store
 export const patientName = derived(
     patient,
     ($patient, set) => {
@@ -39,6 +42,7 @@ export const patientName = derived(
         }
     }
 );
+
 
 
 

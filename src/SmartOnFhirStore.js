@@ -9,7 +9,6 @@ export const dipsExtensionsStore = writable(dipsExtensions);
 //Runs when the app is authorized to access the FHIR-api
 Smart.ready()
     .then(client => {
-			console.log(client);
         var newContext = {
             client: client,
             error: null

@@ -9,13 +9,12 @@ export const dipsExtensionsStore = writable(dipsExtensions);
 //Runs when the app is authorized to access the FHIR-api
 Smart.ready()
     .then(client => {
+			console.log(client);
         var newContext = {
             client: client,
             error: null
         };
-        console.log(client);
         fhir.set(newContext);
-        console.log(newContext.client)
     })
     .catch(console.error);
 
@@ -25,7 +24,17 @@ export const patient = derived(
     ($fhir, set) => {
         if($fhir != null && $fhir.client != null)
         {
-            $fhir.client.patient.read().then(p => set(p));
+            var patientId = $fhir.client.getState("tokenResponse.patient");
+            $fhir.client.request({
+					url: "Patient/"+patientId,
+					headers:{
+						'dips-subscription-key': process.env.DIPS_SUBSCRIPTION_KEY
+					}}
+			).then(
+                resource => {
+                    set(resource);
+                });                       
+				
         }
     }
 );

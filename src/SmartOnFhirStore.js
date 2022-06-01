@@ -23,17 +23,16 @@ export const patient = derived(
     ($fhir, set) => {
         if($fhir != null && $fhir.client != null)
         {
-            var patientId = $fhir.client.getState("tokenResponse.patient");
-            $fhir.client.request({
-					url: "Patient/"+patientId,
-					headers:{
-						'dips-subscription-key': process.env.DIPS_SUBSCRIPTION_KEY
-					}}
-			).then(
+		var patientId = $fhir.client.getState("tokenResponse.patient");
+
+		$fhir.client.patient.read(
+			 {
+				headers: {'dips-subscription-key' : process.env.DIPS_SUBSCRIPTION_KEY}
+		     })
+			.then(
                 resource => {
                     set(resource);
-                });                       
-				
+			});
         }
     }
 );

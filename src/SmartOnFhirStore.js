@@ -13,9 +13,7 @@ Smart.ready()
             client: client,
             error: null
         };
-        console.log(client);
         fhir.set(newContext);
-        console.log(newContext.client)
     })
     .catch(console.error);
 
@@ -25,7 +23,16 @@ export const patient = derived(
     ($fhir, set) => {
         if($fhir != null && $fhir.client != null)
         {
-            $fhir.client.patient.read().then(p => set(p));
+		var patientId = $fhir.client.getState("tokenResponse.patient");
+
+		$fhir.client.patient.read(
+			 {
+				headers: {'dips-subscription-key' : process.env.DIPS_SUBSCRIPTION_KEY}
+		     })
+			.then(
+                resource => {
+                    set(resource);
+			});
         }
     }
 );

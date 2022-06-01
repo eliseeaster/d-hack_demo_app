@@ -1,64 +1,17 @@
-# svelte app
+# DIPS SMART on FHIR demo app
 
-This is a project template for [Svelte](https://svelte.dev) apps. It lives at https://github.com/sveltejs/template-webpack.
+SMART on FHIR app that fetches a patient and lists some of its information. The
+app fetches data from any SMART on FHIR enabled FHIR server, such as our FHIR
+server in the [Open DIPS](https://open.dips.no) sandbox.
 
-To create a new project based on this template using [degit](https://github.com/Rich-Harris/degit):
+![screenshot.png](public/screenshot.png)
 
-```bash
-npx degit sveltejs/template-webpack svelte-app
-cd svelte-app
+# Run
+
+Before you run the app you'll need to fill inn the necessary config in the
+[.env](.env) file. This includes API keys to Open DIPS, as well as client id and
+secret for the OpenID Connect server.
+
 ```
-
-*Note that you will need to have [Node.js](https://nodejs.org) installed.*
-
-
-## Get started
-
-Install the dependencies...
-
-```bash
-cd svelte-app
-npm install
-```
-
-...then start webpack:
-
-```bash
 npm run dev
-```
-
-Navigate to [localhost:8080](http://localhost:8080). You should see your app running. Edit a component file in `src`, save it, and the page should reload with your changes.
-
-
-## Deploying to the web
-
-### With [now](https://zeit.co/now)
-
-Install `now` if you haven't already:
-
-```bash
-npm install -g now
-```
-
-Then, from within your project folder:
-
-```bash
-now
-```
-
-As an alternative, use the [Now desktop client](https://zeit.co/download) and simply drag the unzipped project folder to the taskbar icon.
-
-### With [surge](https://surge.sh/)
-
-Install `surge` if you haven't already:
-
-```bash
-npm install -g surge
-```
-
-Then, from within your project folder:
-
-```bash
-npm run build
-surge public
 ```
